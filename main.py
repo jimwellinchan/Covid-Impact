@@ -12,3 +12,7 @@ pygame.display.set_caption("Covid Impact")
 shoot_fx = pygame.mixer.Sound('assets/Syringe.mp3')
 shoot_fx.set_volume(0.5)
 
+# Load images
+RED_SPACE_SHIP = pygame.image.load(os.path.join("assets", "infected red.png"))
+GREEN_SPACE_SHIP = pygame.image.load(os.path.join("assets", "infected green.png"))
+BLUE_SPACE_SHIP = pygame.image.load(os.path.join("assets", "infected blue.png"))
