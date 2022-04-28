@@ -204,3 +204,33 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_a] and player.x - player_vel > 0: # left
+            player.x -= player_vel
+        if keys[pygame.K_d] and player.x + player_vel + player.get_width() < WIDTH: # right
+            player.x += player_vel
+        if keys[pygame.K_w] and player.y - player_vel > 0: # up
+            player.y -= player_vel
+        if keys[pygame.K_s] and player.y + player_vel + player.get_height() + 15 < HEIGHT: # down
+            player.y += player_vel
+        if keys[pygame.K_SPACE]:
+            shoot_fx.play()
+            player.shoot()
+            
+
+        for enemy in enemies[:]:
+            enemy.move(enemy_vel)
+            enemy.move_lasers(laser_vel, player)
+
+            if random.randrange(0, 2*60) == 1:
+                enemy.shoot()
+
+            if collide(enemy, player):
+                player.health -= 10
+                enemies.remove(enemy)
+            elif enemy.y + enemy.get_height() > HEIGHT:
+                lives -= 1
+                enemies.remove(enemy)
+
+        player.move_lasers(-laser_vel, enemies)
