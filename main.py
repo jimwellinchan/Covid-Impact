@@ -132,3 +132,9 @@ class Enemy(Ship):
         super().__init__(x, y, health)
         self.ship_img, self.laser_img = self.COLOR_MAP[color]
         self.mask = pygame.mask.from_surface(self.ship_img)
+
+
+def collide(obj1, obj2):
+    offset_x = obj2.x - obj1.x
+    offset_y = obj2.y - obj1.y
+    return obj1.mask.overlap(obj2.mask, (offset_x, offset_y)) != None
