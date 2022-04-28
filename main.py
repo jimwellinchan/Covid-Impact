@@ -25,3 +25,6 @@ RED_LASER = pygame.image.load(os.path.join("assets", "virus.png"))
 GREEN_LASER = pygame.image.load(os.path.join("assets", "green virus.png"))
 BLUE_LASER = pygame.image.load(os.path.join("assets", "blue virus.png"))
 YELLOW_LASER = pygame.image.load(os.path.join("assets", "syringe.png"))
+
+# Background
+BG = pygame.transform.scale(pygame.image.load(os.path.join("assets", "Lab Background.png")), (WIDTH, HEIGHT))
