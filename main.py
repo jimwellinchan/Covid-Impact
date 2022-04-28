@@ -19,3 +19,9 @@ BLUE_SPACE_SHIP = pygame.image.load(os.path.join("assets", "infected blue.png"))
 
 # Player player
 YELLOW_SPACE_SHIP = pygame.image.load(os.path.join("assets", "nurse.png"))
+
+# Lasers
+RED_LASER = pygame.image.load(os.path.join("assets", "virus.png"))
+GREEN_LASER = pygame.image.load(os.path.join("assets", "green virus.png"))
+BLUE_LASER = pygame.image.load(os.path.join("assets", "blue virus.png"))
+YELLOW_LASER = pygame.image.load(os.path.join("assets", "syringe.png"))
