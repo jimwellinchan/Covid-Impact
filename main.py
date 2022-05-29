@@ -172,7 +172,9 @@ def main():
     lives = 5
     main_font = pygame.font.SysFont("ARCADECLASSIC", 50)
     lost_font = pygame.font.SysFont("ARCADECLASSIC", 60)
-
+    pause_font = pygame.font.SysFont("ARCADECLASSIC", 120)
+    pause_button = button.Button(10, 660, PAUSE_BUTTON, 1)
+    resume_button = button.Button(WIDTH // 2 - 30, 400, RESUME_BUTTON, 1)
     enemies = []
     wave_length = 5
     enemy_vel = 1
