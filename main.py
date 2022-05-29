@@ -259,32 +259,37 @@ def main():
                 quit()
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_a] and player.x - player_vel > 0: # left
+        if keys[pygame.K_a] and player.x - player_vel > 0 and player.pause == False: # left
             player.x -= player_vel
-        if keys[pygame.K_d] and player.x + player_vel + player.get_width() < WIDTH: # right
+        if keys[pygame.K_d] and player.x + player_vel + player.get_width() < WIDTH and player.pause == False: # right
             player.x += player_vel
-        if keys[pygame.K_w] and player.y - player_vel > 0: # up
+        if keys[pygame.K_w] and player.y - player_vel > 0 and player.pause == False: # up
             player.y -= player_vel
-        if keys[pygame.K_s] and player.y + player_vel + player.get_height() + 15 < HEIGHT: # down
+        if keys[pygame.K_s] and player.y + player_vel + player.get_height() + 15 < HEIGHT and player.pause == False: # down
             player.y += player_vel
-        if keys[pygame.K_SPACE]:
-            shoot_fx.play()
+        if keys[pygame.K_SPACE]and player.pause == False:
             player.shoot()
+
+
             
+        if player.pause == False:
+            for enemy in enemies[:]:
+                enemy.move(enemy_vel)
+                enemy.move_lasers(laser_vel, player)
 
-        for enemy in enemies[:]:
-            enemy.move(enemy_vel)
-            enemy.move_lasers(laser_vel, player)
+                if random.randrange(0, 2*60) == 1:
+                    enemy.shoot()
 
-            if random.randrange(0, 2*60) == 1:
-                enemy.shoot()
-
-            if collide(enemy, player):
-                player.health -= 10
-                enemies.remove(enemy)
-            elif enemy.y + enemy.get_height() > HEIGHT:
-                lives -= 1
-                enemies.remove(enemy)
+                if collide(enemy, player):
+                    player.health -= 10
+                    if player.health == 0:
+                        GameOver_fx.play()
+                    elif player.health > 0:
+                        Damaged_fx.play()
+                    enemies.remove(enemy)
+                elif enemy.y + enemy.get_height() > HEIGHT:
+                    lives -= 1
+                    enemies.remove(enemy)
 
         player.move_lasers(-laser_vel, enemies)
 
