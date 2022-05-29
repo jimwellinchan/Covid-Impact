@@ -20,9 +20,12 @@ Damaged_fx = pygame.mixer.Sound('assets/Damaged.mp3')
 Damaged_fx.set_volume(0.5)
 
 # Load images
-RED_SPACE_SHIP = pygame.image.load(os.path.join("assets", "infected red.png"))
-GREEN_SPACE_SHIP = pygame.image.load(os.path.join("assets", "infected green.png"))
-BLUE_SPACE_SHIP = pygame.image.load(os.path.join("assets", "infected blue.png"))
+RED_INFECTED_PERSON = pygame.image.load(os.path.join("assets", "infected red.png"))
+GREEN_INFECTED_PERSON = pygame.image.load(os.path.join("assets", "infected green.png"))
+BLUE_INFECTED_PERSON = pygame.image.load(os.path.join("assets", "infected blue.png"))
+PAUSE_BUTTON = pygame.image.load(os.path.join("assets", "pause.png"))
+RESUME_BUTTON = pygame.image.load(os.path.join("assets", "resume.png"))
+TITLE = pygame.image.load(os.path.join("assets", "CovidImpact.png"))
 
 # Player player
 YELLOW_SPACE_SHIP = pygame.image.load(os.path.join("assets", "nurse.png"))
