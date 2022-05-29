@@ -192,20 +192,45 @@ def main():
     def redraw_window():
         WIN.blit(BG, (0,0))
         # draw text
-        lives_label = main_font.render(f"Lives: {lives}", 1, (255,255,255))
-        level_label = main_font.render(f"Level: {level}", 1, (255,255,255))
-        WIN.blit(lives_label, (10, 10))
-        WIN.blit(level_label, (WIDTH - level_label.get_width() - 10, 10))
+        if player.pause == False:
+            lives_label = main_font.render(f"Lives: {lives}", 1, (255,255,255))
+            level_label = main_font.render(f"Level: {level}", 1, (255,255,255))
+            score_label = main_font.render(f"Score: {player.score}", 1, (255,255,255))
+            
+            WIN.blit(lives_label, (10, 10))
+            WIN.blit(score_label, (10, 50))
+            WIN.blit(level_label, (WIDTH - level_label.get_width() - 10, 10))
 
-        for enemy in enemies:
-            enemy.draw(WIN)
+            for enemy in enemies:
+                enemy.draw(WIN)
 
-        player.draw(WIN)
+            player.draw(WIN)
+            
+            if pause_button.draw(WIN):
+                player.pause = True
+                pygame.mixer.music.set_volume(0)
+                
+            if lost:
+                WIN.blit(BG, (0,0))
+                pygame.mixer.music.set_volume(0)
+                lost_label = lost_font.render("You Lost!!", 1, (255,255,255))
+                WIN.blit(lost_label, (WIDTH/2 - lost_label.get_width()/2, 300))
+                finalscore_label = lost_font.render(f"Your score is: {player.score}", 1, (255,255,255))
+                WIN.blit(finalscore_label, (210, 350))
 
-        if lost:
-            lost_label = lost_font.render("You Lost!!", 1, (255,255,255))
-            WIN.blit(lost_label, (WIDTH/2 - lost_label.get_width()/2, 350))
+                
 
+
+
+        if player.pause == True:
+            WIN.blit(BG, (0,0))
+            pause_label = pause_font.render(f"Game Paused",3,(255,255,255))
+            WIN.blit(pause_label,(WIDTH/2 - pause_label.get_width()/2, 300))
+
+            if resume_button.draw(WIN):
+                player.pause = False
+                pygame.mixer.music.set_volume(0.1)
+                
         pygame.display.update()
 
     while run:
