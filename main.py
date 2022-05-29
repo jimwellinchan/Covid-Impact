@@ -112,6 +112,8 @@ class Player(Ship):
         self.laser_img = YELLOW_LASER
         self.mask = pygame.mask.from_surface(self.ship_img)
         self.max_health = health
+        self.score = 0
+        self.pause = False
 
     def move_lasers(self, vel, objs):
         self.cooldown()
@@ -123,6 +125,7 @@ class Player(Ship):
                 for obj in objs:
                     if laser.collision(obj):
                         objs.remove(obj)
+                        self.score+=10
                         if laser in self.lasers:
                             self.lasers.remove(laser)
 
@@ -133,7 +136,7 @@ class Player(Ship):
     def healthbar(self, window):
         pygame.draw.rect(window, (255,0,0), (self.x, self.y + self.ship_img.get_height() + 10, self.ship_img.get_width(), 10))
         pygame.draw.rect(window, (0,255,0), (self.x, self.y + self.ship_img.get_height() + 10, self.ship_img.get_width() * (self.health/self.max_health), 10))
-
+        
 
 class Enemy(Ship):
     COLOR_MAP = {
