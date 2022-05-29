@@ -298,15 +298,16 @@ def main_menu():
     run = True
     while run:
         WIN.blit(BG, (0,0))
-        title_label = title_font.render("Press the mouse to begin...", 1, (255,255,255))
-        WIN.blit(title_label, (WIDTH/2 - title_label.get_width()/2, 350))
+        WIN.blit(TITLE, (WIDTH/2 - TITLE.get_width()/2,280))
+        title_label = title_font.render("Play", 1, (255,255,255))
+        WIN.blit(title_label, (WIDTH/2 - title_label.get_width()/2, 500))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pygame.mixer.music.load('assets/Covid.mp3')
-                pygame.mixer.music.set_volume(0.5)
+                pygame.mixer.music.set_volume(0.1)
                 pygame.mixer.music.play(-1, 0.0)
                 main()
     pygame.quit()
